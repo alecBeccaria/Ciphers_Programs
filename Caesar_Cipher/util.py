@@ -99,7 +99,7 @@ def common_factors(key: int):
     n = []
     g = gcd(key, 26)
     for i in range(1, g + 1):
-        if g % i == 0: 
+        if g % i == 0:
             n.append(i)
     return n
 

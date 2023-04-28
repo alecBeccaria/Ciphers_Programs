@@ -120,13 +120,13 @@ def main():
             while (back is False):
                 print("---- Tools ----")
                 print("1. Check Multi Key\n2. Find Multi Key Inverse\n3. Calculate Affine Key", end='')
-                print("\n4. List Modulo 26 inverse pairs\n type 'back' to go back")
+                print("\n4. Break Down Affine Key\n5. List Modulo 26 inverse pairs\n type 'back' to go back")
                 selection = input("Select Menu Option: ")
                 # Check Key
                 if (selection == '1'):
                     key = int(input('Enter a key to check: '))
                     is_good = util.check_key(key)
-                    print(f'\nGood Key: {is_good}\n')
+                    print(f'\nGood Key: {is_good}')
                 # Find multi key inverse
                 elif (selection == '2'):
                     good_key = False
@@ -140,18 +140,23 @@ def main():
                             print("Multi key shares factors with 26 or is > 26")
                 # Calc affine key
                 elif (selection == '3'):
-                    caesar_key = input('Enter Caesar Key: ')
                     good_key = False
                     while (good_key is False):
                         multi_key = input('Enter Multi Key: ')
+                        caesar_key = input('Enter Caesar Key: ')
                         good_key = util.check_key(int(multi_key))
                         if (good_key):
                             affine_key = util.get_affine_key(int(caesar_key), int(multi_key))
-                            print(f'\nAffine Key: {affine_key}\n')
+                            print(f'\nAffine Key: {affine_key}')
                         else:
                             print('Multi key shares factors with 26 or is > 26')
-                # List Modulo 26 inverse pairs
                 elif (selection == '4'):
+                    affine_key = int(input("Enter Affine Key: "))
+                    caesar_shift = util.get_caesar_shift(affine_key)
+                    multi_key = util.get_multi_key(affine_key, caesar_shift)
+                    print(f"\nMulti Key: {multi_key}\nCaesar Shift: {caesar_shift}")
+                # List Modulo 26 inverse pairs
+                elif (selection == '5'):
                     util.print_inverse_pairs()
                 elif (selection == 'back'):
                     back = True
