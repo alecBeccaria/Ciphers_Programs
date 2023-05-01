@@ -15,6 +15,7 @@ def calculate_caesar_alphabet(key: int, cipher_alphabet: list):
 
 
 def calculate_multi_alphabet(key: int, cipher_alphabet: list):
+    key = get_multi_key_inverse(key)
     for i in range(alpha_len):
         cipher_index = (i * key) % alpha_len
         cipher_alphabet.append(alphabet[cipher_index])
@@ -39,6 +40,7 @@ def print_caesar_index(key: int):
             print(f"{str(cipher_index)} ", end='')
 
 def print_multi_index(key: int):
+    key = get_multi_key_inverse(key)
     for i in range(alpha_len):
         cipher_index = (i * key) % alpha_len
         if (cipher_index < 10):
@@ -121,6 +123,19 @@ def get_multi_key_inverse(key: int):
 
 def get_affine_key(caesar_key: int, multi_key: int):
     return (multi_key * alpha_len) + caesar_key
+
+
+def get_possible_multi_keys():
+    nums = []
+    for i in range(1, alpha_len):
+        if (list_contains(nums, i) is False):
+            good_key = check_key(i)
+            if (good_key):
+                inverse = get_multi_key_inverse(i)
+                if (inverse != 1):
+                    nums.append(i)
+                    nums.append(inverse)
+    return nums
 
 
 def print_inverse_pairs():

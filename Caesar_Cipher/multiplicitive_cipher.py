@@ -1,12 +1,11 @@
 import re
-from util import alphabet, alpha_len, regex, get_multi_key_inverse
+from util import alphabet, alpha_len, regex, get_multi_key_inverse, get_possible_multi_keys
 
 
-# encrypt with  (index + key) % 26
+# encrypt with  (index * key) % 26
 def encrypt(key: int, message: str):
     message = message.upper()
     messageArr = [char for char in message]
-    print(messageArr)
     for i in range(len(messageArr)):
         letter = messageArr[i]
         nonAlpha = re.search(regex, letter)
@@ -21,7 +20,6 @@ def encrypt(key: int, message: str):
 def decrypt(key: int, message: str):
     message = message.upper()
     messageArr = [char for char in message]
-    print(messageArr)
     key = get_multi_key_inverse(key)
     for i in range(len(messageArr)):
         letter = messageArr[i]
@@ -32,3 +30,12 @@ def decrypt(key: int, message: str):
             messageArr[i] = alphabet[cipher_index]
     message = ""
     return message.join(messageArr)
+
+
+def brute_force(message: str):
+    results: list = []
+    keys = get_possible_multi_keys()
+    for key in keys:
+        result = decrypt(key, message)
+        results.append(f'message: "{result}"\nkey: {key}\n')
+    return results
