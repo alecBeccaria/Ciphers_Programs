@@ -1,6 +1,7 @@
 import caesar_cipher as caesar
 import multiplicitive_cipher as multi
 import affine_cipher as affine
+import polyalphabetic as poly_alpha
 import util
 from menu import Menu
 
@@ -8,6 +9,7 @@ main_menu = Menu(menu_title='Main Menu', isRoot=True)
 main_menu.append('Caesar Cipher')
 main_menu.append('Multiplicitive Cipher')
 main_menu.append('Affine Cipher')
+main_menu.append('Poly Alphabetic Caesar Cipher')
 
 caesar_menu = Menu(menu_title='Caesar Cipher')
 caesar_menu.append("Encrypt Message")
@@ -30,6 +32,11 @@ affine_menu.append('Decrypt Message')
 affine_menu.append('Print Key')
 affine_menu.append('Calculate Affine Key')
 affine_menu.append('Break Down Affine Key')
+
+polyalphabetic_menu = Menu(menu_title="Poly Alphabetic Caesar Cipher")
+polyalphabetic_menu.append('Encrypt Message')
+polyalphabetic_menu.append('Decrypt Message')
+polyalphabetic_menu.append('Print Key')
 
 def main():
     print('--------------------------------------------------\n')
@@ -184,6 +191,33 @@ def main():
                     caesar_shift = util.get_caesar_shift(affine_key)
                     multi_key = util.get_multi_key(affine_key, caesar_shift)
                     print(f"\nMulti Key: {multi_key}\nCaesar Shift: {caesar_shift}")
+                # exit program
+                elif (selection == 'back'):
+                    back = True
+                else:
+                    print('Not a valid selection!')
+        elif (selection == '4'):
+            while (back is False):
+                polyalphabetic_menu.print_menu()
+                selection = input("Select Menu Option: ")
+                message: str
+                key: int
+                # Encrypt message
+                if (selection == '1'):
+                    message = input("Enter a message to ecrypt: ")
+                    key = input('Enter a key to encrypt with: ')
+                    result = poly_alpha.encrypt(key, message)
+                    print(result)
+                # decrypt message
+                elif (selection == '2'):
+                    message = input("Enter message to decrypt: ")
+                    key = input('Enter a key to decrypt with: ')
+                    result = poly_alpha.decrypt(key, message)
+                    print(result)
+                # Print out key
+                elif (selection == '3'):
+                    key = input('Enter a key to shift by: ')
+                    util.print_alphabet_key(key, 'poly_alpha')
                 # exit program
                 elif (selection == 'back'):
                     back = True
