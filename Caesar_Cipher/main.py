@@ -1,8 +1,9 @@
 import caesar_cipher as caesar
 import multiplicitive_cipher as multi
 import affine_cipher as affine
-import polyalphabetic as poly_alpha
+import vigenere_cipher as vigenere
 import util
+
 from menu import Menu
 
 main_menu = Menu(menu_title='Main Menu', isRoot=True)
@@ -37,6 +38,7 @@ polyalphabetic_menu = Menu(menu_title="Poly Alphabetic Caesar Cipher")
 polyalphabetic_menu.append('Encrypt Message')
 polyalphabetic_menu.append('Decrypt Message')
 polyalphabetic_menu.append('Print Key')
+polyalphabetic_menu.append('Guess Letters')
 
 def main():
     print('--------------------------------------------------\n')
@@ -206,18 +208,20 @@ def main():
                 if (selection == '1'):
                     message = input("Enter a message to ecrypt: ")
                     key = input('Enter a key to encrypt with: ')
-                    result = poly_alpha.encrypt(key, message)
+                    result = vigenere.encrypt(key, message)
                     print(result)
                 # decrypt message
                 elif (selection == '2'):
                     message = input("Enter message to decrypt: ")
                     key = input('Enter a key to decrypt with: ')
-                    result = poly_alpha.decrypt(key, message)
+                    result = vigenere.decrypt(key, message)
                     print(result)
                 # Print out key
                 elif (selection == '3'):
                     key = input('Enter a key to shift by: ')
                     util.print_alphabet_key(key, 'poly_alpha')
+                elif (selection == '4'):
+                    util.guess_letters()
                 # exit program
                 elif (selection == 'back'):
                     back = True

@@ -1,10 +1,15 @@
 from math import gcd
+import unit4 as tim_tools
 
 
 alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
             'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 alpha_len = len(alphabet)
 regex = "[\\W_]+"
+
+
+def guess_letters():
+    tim_tools.guessing_letters()
 
 
 def calculate_caesar_alphabet(key: int, cipher_alphabet: list):
