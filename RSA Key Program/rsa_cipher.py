@@ -17,14 +17,13 @@ def main():
 
     filename = 'encrypted_file.txt'  # the file to write to/read from
 
-    mode = 'encrypt'  # set to 'encrypt' or 'decrypt'
+    mode = 'decrypt'  # set to 'encrypt' or 'decrypt'
 
     if mode == 'encrypt':
 
-        message = '''"Journalists belong in the gutter because that is where the ruling classes throw their guilty secrets." -Gerald Priestland "The Founding Fathers gave the free press the protection it must have to bare the secrets of government
-        and inform the people." -Hugo Black'''
+        message = '''1. I am planning to get a job and work my ass off to pay off this debt.  Tired of being poor and tired of Neumont being in the way of making money\n2.We know he smells like Band-Aids, we know he dresses like a Cuban cab driver, we know he exhibits, nay, flaunts proudly obvious symptoms of over a half dozen disorders you wouldn't wish on your worst enemy's pets. - Community Season 2 Episode 12'''
 
-        pubKeyFilename = 'alec_beccaria_pubkey.txt'
+        pubKeyFilename = 'cam_pubkey.txt'
 
         print('Encrypting and writing to %s...' % (filename))
 
@@ -36,7 +35,7 @@ def main():
 
     elif mode == 'decrypt':
 
-        privKeyFilename = 'al_sweigart_privkey.txt'
+        privKeyFilename = 'alec_beccaria_privkey.txt'
 
         print('Reading from %s and decrypting...' % (filename))
 
